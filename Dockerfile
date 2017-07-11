@@ -1,5 +1,8 @@
 FROM lnls/docker-epics-dev
 
+RUN apt-get update && \
+    apt-get install -y libpcre3-dev
+
 RUN mkdir /opt/epics/stream && \
     cd /opt/epics/stream && \
     /opt/epics/base/bin/linux-x86_64/makeBaseApp.pl -t support -u janito && \
@@ -26,6 +29,8 @@ RUN mkdir /opt/epics/stream && \
         s,.*,CALC = $(SUPPORT)/calc-3-4-2-1,p; \
         s,.*,SSCAN = $(SUPPORT)/sscan-2-10-1,p; \
     }' configure/RELEASE && \
+    echo 'PCRE_INCLUDE = /usr/include/pcre' > configure/RELEASE.Common.linux-x86_64 && \
+    echo 'PCRE_LIB = /usr/lib' >> configure/RELEASE.Common.linux-x86_64 && \
     git clone https://github.com/paulscherrerinstitute/StreamDevice.git streamDevice && \
     cd streamDevice && \
     git checkout stream_2_7_7 && \
