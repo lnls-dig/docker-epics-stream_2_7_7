@@ -1,3 +1,6 @@
+!!! THIS REPOSIRORY IS OBSOLETE AND WAS REPLACED BY EPICS_DIST (https://github.com/lnls-sirius/docker-epics-dist) !!!
+=====================================================================================================================
+
 EPICS development image with StreamDevice 2.7.7
 ===============================================
 
